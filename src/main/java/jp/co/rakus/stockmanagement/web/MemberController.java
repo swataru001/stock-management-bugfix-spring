@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,8 +52,12 @@ public class MemberController {
 	 * @return ログイン画面
 	 */
 	@RequestMapping(value = "create")
-	public String create(@Validated MemberForm form, 
+	public String create(@Validated MemberForm form,BindingResult rs,
 			Model model) {
+		
+		if(rs.hasErrors()) {
+			return form();
+		}
 		Member member = new Member();
 		BeanUtils.copyProperties(form, member);
 		memberService.save(member);
