@@ -61,14 +61,14 @@ public class MemberController {
 	@RequestMapping(value = "create")
 	public String create(@Validated MemberForm form, BindingResult result, Model model) {
 
-		if (result.hasErrors()) {
-			return form();
-		}
-
 		Member valueOfMember = memberService.findByMailAddress(form.getMailAddress());
 
 		if (valueOfMember != null) {
 			result.rejectValue("mailAddress",null, "メールアドレスが重複しています。");
+			return form();
+		}
+		
+		if (result.hasErrors()) {
 			return form();
 		}
 
