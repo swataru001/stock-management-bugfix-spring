@@ -21,6 +21,7 @@
 			      	メールアドレス
 			    </th>
 			    <td>
+			    <label class="control-label" style="color: red" for="inputError">メールアドレスが	重複しています。</label>
 			    	<form:errors cssStyle="color:red" element="div" path="mailAddress"/>
 			    	<form:input path="mailAddress"  placeholder="mailAddress"/>
 
