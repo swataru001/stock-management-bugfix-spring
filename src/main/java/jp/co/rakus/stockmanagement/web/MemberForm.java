@@ -17,6 +17,17 @@ public class MemberForm {
 	/** パスワード */
 	@NotBlank(message="パスワードを入力してください。")
 	private String password;
+	/**確認用パスワード*/
+	@NotBlank(message="確認用パスワードを入力してください。")
+	private String confirmPassword;
+	
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 	public String getName() {
 		return name;
 	}

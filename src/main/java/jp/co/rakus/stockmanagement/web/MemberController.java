@@ -61,8 +61,18 @@ public class MemberController {
 	@RequestMapping(value = "create")
 	public String create(@Validated MemberForm form, BindingResult result, Model model) {
 
+		String password = form.getPassword();
+		String confirmPassword = form.getConfirmPassword();
+		
+		if(!(password.equals(confirmPassword))) {
+			result.rejectValue("password",null, "パスワードと確認用パスワードが違います。");
+			result.rejectValue("confirmPassword",null, "パスワードと確認用パスワードが違います。");
+			return form();
+		}
+		
 		Member valueOfMember = memberService.findByMailAddress(form.getMailAddress());
 
+		
 		if (valueOfMember != null) {
 			result.rejectValue("mailAddress",null, "メールアドレスが重複しています。");
 			return form();
