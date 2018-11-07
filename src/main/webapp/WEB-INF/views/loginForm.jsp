@@ -13,6 +13,7 @@
 			    	 メールアドレス
 			    </th>
 			    <td>
+			    	
 			    	<form:input path="mailAddress" placeholder="Email"/>
 			    	<form:errors path="mailAddress"  />
 			    </td>
