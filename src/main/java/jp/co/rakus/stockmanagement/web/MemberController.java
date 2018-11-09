@@ -66,8 +66,7 @@ public class MemberController {
 		
 		if(!(password.equals(confirmPassword))) {
 			result.rejectValue("password",null, "パスワードと確認用パスワードが違います。");
-			result.rejectValue("confirmPassword",null, "パスワードと確認用パスワードが違います。");
-			return form();
+			
 		}
 		
 		Member valueOfMember = memberService.findByMailAddress(form.getMailAddress());
@@ -75,7 +74,7 @@ public class MemberController {
 		
 		if (valueOfMember != null) {
 			result.rejectValue("mailAddress",null, "メールアドレスが重複しています。");
-			return form();
+			
 		}
 		
 		if (result.hasErrors()) {

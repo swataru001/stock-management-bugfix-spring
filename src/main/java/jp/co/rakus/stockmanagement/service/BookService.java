@@ -27,14 +27,19 @@ public class BookService {
 		return bookRepository.findOne(id);
 	}
 	
-//	public Book save(Book book){
-//		return bookRepository.save(book);
-//	}
+	public Book save(Book book){
+	return bookRepository.save(book);
+	}
 	
 	public Book update(Book book){
 		return bookRepository.update(book);
 	}
 	
+	public int selectMaxId(){
+		Book book = bookRepository.selectMaxId();
+		int maxId = book.getId();
+		return maxId;
+	}
 //	public void delete(Integer id){
 //		bookRepository.delete(id);
 //	}

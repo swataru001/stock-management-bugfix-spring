@@ -31,7 +31,7 @@
 			     	 パスワード
 			    </th>
 			    <td>
-			    	<form:errors cssStyle="color:red" element="div" path="password"/>
+			    <form:errors cssStyle="color:red" element="div" path="password"/>
 			    	<form:password path="password" placeholder="Password"/>
 			    </td>
 			  </tr>

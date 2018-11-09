@@ -56,6 +56,13 @@ public class BookRepository {
 		return book;
 	}
 	
+	public Book selectMaxId() {
+		SqlParameterSource param = new MapSqlParameterSource();
+		String sql = "SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock From books where id in (select max(id) from books);";
+		Book book = jdbcTemplate.queryForObject(sql ,param, BOOK_ROW_MAPPER);
+		return book;
+	}
+	
 	public Book update(Book book) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
 		if (book.getId() == null) {
@@ -66,4 +73,14 @@ public class BookRepository {
 				param);
 		return book;
 	}
+	
+	public Book save(Book book) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
+		
+		jdbcTemplate.update(
+				"Insert into books(id,name,author,publisher,price,isbncode,saledate,explanation,image,stock) values (:id,:name,:author,:publisher,:price,:isbncode,:saledate,:explanation,:image,:stock)",
+				param);
+		return book;
+	}
+	
 }
